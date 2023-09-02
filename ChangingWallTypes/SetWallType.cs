@@ -49,7 +49,7 @@ namespace ChangingWallTypes
             var uiapp = _commandData.Application;
             var uidoc = uiapp.ActiveUIDocument;
             Document doc = uidoc.Document;
-            RaiseCoseRequest();
+
             using (var tr = new Transaction(doc, "Set Wall Type"))
             {
                 tr.Start();
