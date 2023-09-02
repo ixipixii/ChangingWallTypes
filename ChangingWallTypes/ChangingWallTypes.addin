@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Command">
+		<Name>ChangingWallTypes</Name>
+		<Assembly>ChangingWallTypes\ChangingWallTypes.dll</Assembly>
+		<ClientId>A61C60D4-7F13-4AA5-A6CA-76974621B4FD</ClientId>
+		<FullClassName>ChangingWallTypes.Main</FullClassName>
+		<Text>ChangingWallTypes</Text>
+		<VendorId>ADSK</VendorId>
+	</AddIn>
+</RevitAddIns>
+
