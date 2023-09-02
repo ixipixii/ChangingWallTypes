@@ -59,5 +59,18 @@ namespace ChangingWallTypes
                 tr.Commit();
             }
         }
+
+        public class EventTypeWall : IExternalEventHandler
+        {
+            public void Execute(UIApplication app)
+            {
+                throw new NotImplementedException();
+            }
+
+            public string GetName()
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
