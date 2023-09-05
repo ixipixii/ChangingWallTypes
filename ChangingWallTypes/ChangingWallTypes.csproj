@@ -37,10 +37,10 @@
       <HintPath>..\packages\Prism.Core.8.1.97\lib\net47\Prism.dll</HintPath>
     </Reference>
     <Reference Include="RevitAPI">
-      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
     </Reference>
     <Reference Include="RevitAPIUI">
-      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPIUI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -73,7 +73,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)*.*" "%25appdata%25\Autodesk\Revit\Addins\2024\ChangingWallTypes" /y/i
-xcopy "$(ProjectDir)$(ProjectName).addin" "%25appdata%25\Autodesk\Revit\Addins\2024\" /y/i</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)*.*" "%25appdata%25\Autodesk\Revit\Addins\2021\ChangingWallTypes" /y/i
+xcopy "$(ProjectDir)$(ProjectName).addin" "%25appdata%25\Autodesk\Revit\Addins\2021\" /y/i</PostBuildEvent>
   </PropertyGroup>
 </Project>

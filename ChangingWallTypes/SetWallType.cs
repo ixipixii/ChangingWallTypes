@@ -16,16 +16,19 @@ namespace ChangingWallTypes
     {
         private ExternalCommandData _commandData;
         public DelegateCommand SetType { get; }
-        public object PickedObjects { get; }
+        public WallType SelectedType { get; set; }
+        public List<Element> PickedObjects { get; }
+        public List<WallType> WallTypes { get; }
 
         public SetWallType(ExternalCommandData commandData)
         {
             _commandData = commandData;
             SetType = new DelegateCommand(OnSetType);
             PickedObjects = PickObjects(commandData);
+            WallTypes = ListWallTypes(commandData);
         }
 
-       public static List<Element> PickObjects(ExternalCommandData commandData)
+        public static List<Element> PickObjects(ExternalCommandData commandData)
         {
             var uiapp = commandData.Application;
             var uidoc = uiapp.ActiveUIDocument;
@@ -34,7 +37,19 @@ namespace ChangingWallTypes
             var selectedObjects = uidoc.Selection.PickObjects(Autodesk.Revit.UI.Selection.ObjectType.Element, "Выберите элементы");
             List<Element> elementList = selectedObjects.Select(selectedObject => doc.GetElement(selectedObject)).ToList();
             return elementList;
+        }
 
+        public static List<WallType> ListWallTypes(ExternalCommandData commandData)
+        {
+            var uiapp = commandData.Application;
+            var uidoc = uiapp.ActiveUIDocument;
+            Document doc = uidoc.Document;
+
+            List<WallType> AllWallsTypes = new FilteredElementCollector(doc)
+                                            .OfClass(typeof(WallType))
+                                            .Cast<WallType>()
+                                            .ToList();
+            return AllWallsTypes;
         }
 
         public event EventHandler CloseRequest;
@@ -49,12 +64,20 @@ namespace ChangingWallTypes
             var uidoc = uiapp.ActiveUIDocument;
             Document doc = uidoc.Document;
 
+            if (SelectedType == null || PickedObjects.Count == 0)
+                return;
+
             using (var tr = new Transaction(doc, "Set Wall Type"))
             {
                 tr.Start();
-
-                TaskDialog.Show("Transaction", "Ok");
-
+                foreach (var elementWall in PickedObjects)
+                {
+                    if (elementWall is Wall)
+                    {
+                        var wall = elementWall as Wall;
+                        wall.WallType = SelectedType;
+                    }                    
+                }
                 tr.Commit();
             }
         }

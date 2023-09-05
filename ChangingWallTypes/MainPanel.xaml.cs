@@ -27,10 +27,10 @@ namespace ChangingWallTypes
         public MainPanel(ExternalCommandData commandData)
         {
             InitializeComponent();
+/*            LB.ItemsSource = SetWallType.ListWallTypes(commandData);*/
             SetWallType mainPanel = new SetWallType(commandData);
             mainPanel.CloseRequest += (s, e) => this.Close();
             DataContext = mainPanel;
         }
-
     }
 }
