@@ -13,18 +13,10 @@ namespace ChangingWallTypes
     [Transaction(TransactionMode.Manual)]
     public class Main : IExternalCommand
     {
-        static public MainPanel window;
-        public List<Element> selList { set; get; }
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            var uiapp = commandData.Application;
-            var uidoc = uiapp.ActiveUIDocument;
-            Document doc = uidoc.Document;
-
-            List<Element> AllWallsTypes = new FilteredElementCollector(doc).OfClass(typeof(WallType)).ToList();
-            
-            window = new MainPanel(commandData);
-            window.Show();
+            MainPanel window = new MainPanel(commandData);
+            window.ShowDialog();
 
             return Result.Succeeded;
         }

@@ -12,7 +12,6 @@ using System.Windows.Controls;
 
 namespace ChangingWallTypes
 {
-    [Transaction(TransactionMode.Manual)]
     public class SetWallType
     {
         private ExternalCommandData _commandData;
